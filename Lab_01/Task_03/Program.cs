@@ -39,7 +39,17 @@ class Task03
                 lastDigit = n % 10;
                 Console.WriteLine("Last Digit is " + lastDigit);
                 break;
-            case 4: 
+            case 4:
+                int ndigit;
+                Console.WriteLine("Enter number: ");
+                int number = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter number of digit from right: ");
+                int n1 = int.Parse(Console.ReadLine());
+                int temp;
+                temp = temp / Math.Pow(10, n1 - 1);
+                ndigit = temp % 10;
+                Console.WriteLine("" + ndigit);
+                break;
                 
             default:
                 Console.WriteLine("Wrong choice");
