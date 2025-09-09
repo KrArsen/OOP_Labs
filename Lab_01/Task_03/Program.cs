@@ -45,10 +45,9 @@ class Task03
                 int number = int.Parse(Console.ReadLine());
                 Console.WriteLine("Enter number of digit from right: ");
                 int n1 = int.Parse(Console.ReadLine());
-                int temp;
-                temp = temp / Math.Pow(10, n1 - 1);
-                ndigit = temp % 10;
-                Console.WriteLine("" + ndigit);
+
+                ndigit = ((number / (int)Math.Pow(10, n1 - 1)) % 10);
+                Console.WriteLine("Digit: " + ndigit);
                 break;
                 
             default:
