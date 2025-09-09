@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 class pTypes
 {
@@ -16,11 +17,21 @@ class pTypes
         
         int  sixthVal = -1141583228;
         
-        Console.WriteLine("{0}, {1}, {2},{3}, {4}, {5}",firstVal,secondVal,thirdVal,fourthVal,fifthVal,sixthVal);
         
-
+        Console.WriteLine("Menu:");
+        Console.WriteLine("1.Integer numbers");
+        Console.WriteLine("2. Floating-point numbers");
+        Console.WriteLine("Choose Task:");
+        Console.WriteLine("");
         
-        
-
+        int choice = int.Parse(Console.ReadLine());
+        switch (choice)
+        {
+                case 1:
+                    Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}",firstVal,secondVal,thirdVal,fourthVal,fifthVal,sixthVal);
+                    break;
+                
+                    
+        }
     }
 }
