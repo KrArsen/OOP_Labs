@@ -16,6 +16,9 @@ class pTypes
         
         int  sixthVal = -1141583228;
         
+        Console.WriteLine("{0}, {1}, {2},{3}, {4}, {5}",firstVal,secondVal,thirdVal,fourthVal,fifthVal,sixthVal);
+        
+
         
         
 
