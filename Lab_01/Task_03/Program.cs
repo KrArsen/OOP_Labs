@@ -9,6 +9,7 @@ class Task03
         Console.WriteLine("3. Last digit ");
         Console.WriteLine("4. Reversed value ");
         Console.WriteLine("5. Check if value > than 20 and odd ");
+        Console.WriteLine("6. The entered number is divisible by the given constants 9, 11 ,13 without a remainder ");
         int choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
@@ -52,6 +53,7 @@ class Task03
                 break;
             case 5:
                 bool result;
+                Console.WriteLine("Enter number: ");
                 int n2 = int.Parse(Console.ReadLine());
                 if (n2 > 20 && n2 % 2 == 1)
                 {
@@ -65,6 +67,7 @@ class Task03
                 break;
             case 6:
                 bool result1;
+                Console.WriteLine("Enter number: ");
                 int n3 = int.Parse(Console.ReadLine());
                 if (n3 % 9 == 0 || n3 % 11 == 0 ||  n3 % 13 == 0)
                 {
@@ -75,6 +78,9 @@ class Task03
                     result1 = false;
                 }
                 Console.WriteLine("Result: " + result1);
+                break;
+            case 7:
+                
                 break;
             default:
                 Console.WriteLine("Wrong choice");
