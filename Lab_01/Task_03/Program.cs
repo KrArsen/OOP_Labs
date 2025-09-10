@@ -53,7 +53,7 @@ class Task03
             case 5:
                 bool result;
                 int n2 = int.Parse(Console.ReadLine());
-                if (n2 > 20 && n2 % 10 == 1)
+                if (n2 > 20 && n2 % 2 == 1)
                 {
                     result = true;
                 }
@@ -62,6 +62,19 @@ class Task03
                     result = false;
                 }
                 Console.WriteLine("Result: " + result);
+                break;
+            case 6:
+                bool result1;
+                int n3 = int.Parse(Console.ReadLine());
+                if (n3 % 9 == 0 || n3 % 11 == 0 ||  n3 % 13 == 0)
+                {
+                    result1 = true;
+                }
+                else
+                {
+                    result1 = false;
+                }
+                Console.WriteLine("Result: " + result1);
                 break;
             default:
                 Console.WriteLine("Wrong choice");
