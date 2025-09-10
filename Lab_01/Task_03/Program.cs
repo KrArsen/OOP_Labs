@@ -8,6 +8,7 @@ class Task03
         Console.WriteLine("2. Trapecium area ");
         Console.WriteLine("3. Last digit ");
         Console.WriteLine("4. Reversed value ");
+        Console.WriteLine("5. Check if value > than 20 and odd ");
         int choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
@@ -49,7 +50,19 @@ class Task03
                 ndigit = ((number / (int)Math.Pow(10, n1 - 1)) % 10);
                 Console.WriteLine("Digit: " + ndigit);
                 break;
-                
+            case 5:
+                bool result;
+                int n2 = int.Parse(Console.ReadLine());
+                if (n2 > 20 && n2 % 10 == 1)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+                Console.WriteLine("Result: " + result);
+                break;
             default:
                 Console.WriteLine("Wrong choice");
                 break;
