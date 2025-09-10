@@ -4,8 +4,9 @@ class Task04
 {
     static void Main()
     {
-        Console.WriteLine("The biggest from three values: ");
-        Console.WriteLine("Find positive or negative from three values: ");
+        Console.WriteLine("1. The biggest from three values ");
+        Console.WriteLine("2. Find positive or negative from three values ");
+        Console.WriteLine("3. Show day from 1-7 ");
         int choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
@@ -61,6 +62,38 @@ class Task04
                 {
                     Console.WriteLine("Negative");
                 }
+                break;
+            case 3:
+                Console.WriteLine("Enter day from 1-7: ");
+                int day = int.Parse(Console.ReadLine());
+                switch (day)
+                {
+                    case 1:
+                        Console.WriteLine("Monday");
+                        break;
+                    case 2:
+                        Console.WriteLine("Tuesday");
+                        break;
+                    case 3:
+                        Console.WriteLine("Wednesday");
+                        break;
+                    case 4:
+                        Console.WriteLine("Thursday");
+                        break;
+                    case 5:
+                        Console.WriteLine("Friday");
+                        break;
+                    case 6:
+                        Console.WriteLine("Saturday");
+                        break;
+                    case 7:
+                        Console.WriteLine("Sunday");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid day");
+                        break;
+                }
+
                 break;
                 default:
                     Console.WriteLine("Wrong choice");
