@@ -6,11 +6,22 @@ class Task05
     {
         Console.WriteLine("Enter number: ");
         int n =  int.Parse(Console.ReadLine());
-        int factorial = 1;
-        for (int i = 2; i <= n; i++)
+        
+        if (n < 0)
         {
-            factorial *= i;
+            Console.WriteLine("Cannot be negative");
         }
-        Console.WriteLine("Factorial: " + factorial);
+        else
+        {
+
+            int factorial = 1;
+            for (int i = 2; i <= n; i++)
+            {
+                factorial *= i;
+            }
+
+        
+            Console.WriteLine("Factorial: " + factorial);
+        }
     }
 }
