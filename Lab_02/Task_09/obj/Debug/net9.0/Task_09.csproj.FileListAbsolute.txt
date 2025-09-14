@@ -1,0 +1,15 @@
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\bin\Debug\net9.0\Task_09.exe
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\bin\Debug\net9.0\Task_09.deps.json
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\bin\Debug\net9.0\Task_09.runtimeconfig.json
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\bin\Debug\net9.0\Task_09.dll
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\bin\Debug\net9.0\Task_09.pdb
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.GeneratedMSBuildEditorConfig.editorconfig
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.AssemblyInfoInputs.cache
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.AssemblyInfo.cs
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.csproj.CoreCompileInputs.cache
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.sourcelink.json
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.dll
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\refint\Task_09.dll
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.pdb
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\Task_09.genruntimeconfig.cache
+D:\RiderProjects\OOP_Labs\Lab_02\Task_09\obj\Debug\net9.0\ref\Task_09.dll
