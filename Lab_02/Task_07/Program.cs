@@ -4,37 +4,40 @@ class Task07
 {
     static void Main()
     {
-        string input = Console.ReadLine();
-        string[] parts = input.Split(' ');
-        int [] arr = new int [parts.Length];
-        for (int i = 0; i < parts.Length; i++)
+        string[] input = Console.ReadLine().Split(' ');
+        int n = input.Length;
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++)
         {
-            arr[i] = int.Parse(parts[i]);
+            arr[i] = int.Parse(input[i]);
         }
 
         int start = 0, len = 1;
         int bestStart = 0, bestLen = 1;
 
-        for (int i = 1; i < parts.Length; i++)
+        for (int i = 1; i < n; i++)
         {
             if (arr[i] > arr[i - 1])
             {
                 len++;
-            } else
+            }
+            else
             {
-                len = 1;
                 start = i;
+                len = 1;
             }
 
             if (len > bestLen)
             {
                 bestLen = len;
-                bestStart = i - len + 1;
+                bestStart = start;
             }
         }
+
         for (int i = bestStart; i < bestStart + bestLen; i++)
-            {
+        {
             Console.Write(arr[i] + " ");
-            }
+        }
     }
 }
