@@ -55,8 +55,8 @@ class Program
 {
     static void Main()
     {
-        Person person1 = new Person("Pesho", 20);
-        Person person2 = new Person("Gosho", 18);
+        Person person1 = new Person();
+        Person person2 = new Person(18);
         Person person3 = new Person("Stamat", 43);
         
         person1.print();
