@@ -55,9 +55,7 @@ class Program
     static void Main()
     {
         
-        Console.Write("Введіть кількість співробітників N: ");
         int n = int.Parse(Console.ReadLine());
-
         Employee[] employees = new Employee[n];
 
         for (int i = 0; i < n; i++)
@@ -81,9 +79,7 @@ class Program
             }
             else if (parts.Length == 6)
             {
-                string email = parts[4];
-                int age = int.Parse(parts[5]);
-                employees[i] = new Employee(name, salary, position, department, email, age);
+                employees[i] = new Employee(name, salary, position, department, parts[4], int.Parse(parts[5]));
             }
         }
 
