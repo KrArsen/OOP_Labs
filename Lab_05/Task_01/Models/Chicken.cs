@@ -2,8 +2,8 @@
 {
     public class Chicken
     {
-        public const int MinAge = 0;
-        public const int MaxAge = 15;
+        private const int MinAge = 0;
+        private const int MaxAge = 15;
 
         protected string name;
         internal int age;
