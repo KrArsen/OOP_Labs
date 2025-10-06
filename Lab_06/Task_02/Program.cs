@@ -157,8 +157,7 @@ class Program
             Student student = new Student(studentData[0], studentData[1], studentData[2]);
             Worker worker = new Worker(workerData[0], workerData[1], decimal.Parse(workerData[2]), double.Parse(workerData[3]));
 
-            Console.WriteLine(student);
-            Console.WriteLine(" ");
+            Console.WriteLine(student + Environment.NewLine);
             Console.WriteLine(worker);
         }
         catch (ArgumentException ex)
