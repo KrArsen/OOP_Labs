@@ -192,9 +192,26 @@ class Program
         {
             string[] parts = Console.ReadLine().Split(' ');
 
+            string name = parts[0];
+            
+            bool exists = false;
+            for (int j = 0; j < count; j++)
+            {
+                if (names[j] == name)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (exists)
+            {
+                Console.WriteLine($"Name '{name}' already exists! Skipping...");
+                continue; 
+            }
+            
             if (parts.Length == 4)
             {
-                string name = parts[0];
                 int age = int.Parse(parts[1]);
                 string id = parts[2];
                 string birthday = parts[3];
@@ -203,7 +220,6 @@ class Program
             }
             else if (parts.Length == 3)
             {
-                string name = parts[0];
                 int age = int.Parse(parts[1]);
                 string group = parts[2];
                 buyers[count] = new Rebel(name, age, group);
@@ -231,4 +247,5 @@ class Program
 
         Console.WriteLine(totalFood);
     }
+
 }
