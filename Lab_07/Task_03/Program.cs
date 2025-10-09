@@ -39,9 +39,9 @@ interface ISpy : ISoldier
 
 class Soldier : ISoldier
 {
-    public int Id { get; protected set; }
-    public string FirstName { get; protected set; }
-    public string LastName { get; protected set; }
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 
     public Soldier(int id, string firstName, string lastName)
     {
@@ -58,7 +58,7 @@ class Soldier : ISoldier
 
 class Private : Soldier, IPrivate
 {
-    public double Salary { get; protected set; }
+    public double Salary { get; set; }
 
     public Private(int id, string firstName, string lastName, double salary)
         : base(id, firstName, lastName)
@@ -74,7 +74,7 @@ class Private : Soldier, IPrivate
 
 class LeutenantGeneral : Private, ILeutenantGeneral
 {
-    public IPrivate[] Privates { get; protected set; }
+    public IPrivate[] Privates { get; set; }
 
     public LeutenantGeneral(int id, string firstName, string lastName, double salary, IPrivate[] privates)
         : base(id, firstName, lastName, salary)
@@ -93,7 +93,7 @@ class LeutenantGeneral : Private, ILeutenantGeneral
 
 class SpecialisedSoldier : Private, ISpecialisedSoldier
 {
-    public string Corps { get; protected set; }
+    public string Corps { get; set; }
 
     public SpecialisedSoldier(int id, string firstName, string lastName, double salary, string corps)
         : base(id, firstName, lastName, salary)
@@ -128,7 +128,7 @@ class Repair
 
 class Engineer : SpecialisedSoldier, IEngineer
 {
-    public Repair[] Repairs { get; protected set; }
+    public Repair[] Repairs { get; set; }
 
     public Engineer(int id, string firstName, string lastName, double salary, string corps, Repair[] repairs)
         : base(id, firstName, lastName, salary, corps)
@@ -171,7 +171,7 @@ class Mission
 
 class Commando : SpecialisedSoldier, ICommando
 {
-    public Mission[] Missions { get; protected set; }
+    public Mission[] Missions { get; set; }
 
     public Commando(int id, string firstName, string lastName, double salary, string corps, Mission[] missions)
         : base(id, firstName, lastName, salary, corps)
@@ -190,7 +190,7 @@ class Commando : SpecialisedSoldier, ICommando
 
 class Spy : Soldier, ISpy
 {
-    public int CodeNumber { get; protected set; }
+    public int CodeNumber { get; set; }
 
     public Spy(int id, string firstName, string lastName, int codeNumber)
         : base(id, firstName, lastName)
