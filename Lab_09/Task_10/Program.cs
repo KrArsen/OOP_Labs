@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 class CustomList<T> where T : IComparable<T>
 {
@@ -76,12 +77,10 @@ class CustomList<T> where T : IComparable<T>
         return min;
     }
 
-    public void Print()
+    public IEnumerator GetEnumerator()
     {
         for (int i = 0; i < count; i++)
-        {
-            Console.WriteLine(items[i]);
-        }
+            yield return items[i];
     }
 
     private void EnsureCapacity()
@@ -174,7 +173,8 @@ class Program
                     Console.WriteLine(list.Min());
                     break;
                 case "Print":
-                    list.Print();
+                    foreach (var item in list)
+                        Console.WriteLine(item);
                     break;
                 case "Sort":
                     Sorter.Sort(list);
