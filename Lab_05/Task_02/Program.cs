@@ -2,23 +2,33 @@
 
 public class Product
 {
-    public string Name;
-    public double Cost;
+    private string name;
+    private double cost;
+
+    public string Name
+    {
+        get { return name; }
+        private set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Name cannot be empty");
+            name = value;
+        }
+    }
+
+    public double Cost
+    {
+        get { return cost; }
+        private set
+        {
+            if (value < 0)
+                throw new ArgumentException("Money cannot be negative");
+            cost = value;
+        }
+    }
 
     public Product(string name, double cost)
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            Console.WriteLine("Name cannot be empty");
-            Environment.Exit(0);
-        }
-
-        if (cost < 0)
-        {
-            Console.WriteLine("Money cannot be negative");
-            Environment.Exit(0);
-        }
-
         Name = name;
         Cost = cost;
     }
@@ -26,29 +36,39 @@ public class Product
 
 public class Person
 {
-    public string Name;
-    public double Money;
-    public string[] Bag;
-    public int Count;
+    private string name;
+    private double money;
+    private string[] bag;
+    private int count;
+
+    public string Name
+    {
+        get { return name; }
+        private set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Name cannot be empty");
+            name = value;
+        }
+    }
+
+    public double Money
+    {
+        get { return money; }
+        private set
+        {
+            if (value < 0)
+                throw new ArgumentException("Money cannot be negative");
+            money = value;
+        }
+    }
 
     public Person(string name, double money)
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            Console.WriteLine("Name cannot be empty");
-            Environment.Exit(0);
-        }
-
-        if (money < 0)
-        {
-            Console.WriteLine("Money cannot be negative");
-            Environment.Exit(0);
-        }
-
         Name = name;
         Money = money;
-        Bag = new string[100];
-        Count = 0;
+        bag = new string[100];
+        count = 0;
     }
 
     public void Buy(Product product)
@@ -56,28 +76,28 @@ public class Person
         if (Money >= product.Cost)
         {
             Money -= product.Cost;
-            Bag[Count++] = product.Name;
-            Console.WriteLine(Name + " bought " + product.Name);
+            bag[count++] = product.Name;
+            Console.WriteLine($"{Name} bought {product.Name}");
         }
         else
         {
-            Console.WriteLine(Name + " can't afford " + product.Name);
+            Console.WriteLine($"{Name} can't afford {product.Name}");
         }
     }
 
     public void Print()
     {
-        Console.Write(Name + " - ");
-        if (Count == 0)
+        Console.Write($"{Name} - ");
+        if (count == 0)
         {
             Console.WriteLine("Nothing bought");
         }
         else
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                Console.Write(Bag[i]);
-                if (i < Count - 1)
+                Console.Write(bag[i]);
+                if (i < count - 1)
                     Console.Write(", ");
             }
             Console.WriteLine();
@@ -96,7 +116,6 @@ public class Program
         Product[] products = new Product[100];
         int peopleCount = 0, productCount = 0;
 
-
         string[] peopleData = peopleLine.Split(';', StringSplitOptions.RemoveEmptyEntries);
         foreach (string data in peopleData)
         {
@@ -106,7 +125,6 @@ public class Program
             people[peopleCount++] = new Person(name, money);
         }
 
-
         string[] productData = productsLine.Split(';', StringSplitOptions.RemoveEmptyEntries);
         foreach (string data in productData)
         {
@@ -115,7 +133,6 @@ public class Program
             double cost = double.Parse(data.Substring(index + 1));
             products[productCount++] = new Product(name, cost);
         }
-
 
         while (true)
         {
@@ -141,7 +158,6 @@ public class Program
             if (buyer != null && item != null)
                 buyer.Buy(item);
         }
-
 
         for (int i = 0; i < peopleCount; i++)
             people[i].Print();
