@@ -8,46 +8,42 @@ class Pet
 
     public Pet(string name, int age, string kind)
     {
-        this.Name = name;
-        this.Age = age;
-        this.Kind = kind;
+        Name = name;
+        Age = age;
+        Kind = kind;
     }
 
     public override string ToString()
     {
-        return $"{this.Name} {this.Age} {this.Kind}";
+        return $"{Name} {Age} {Kind}";
     }
 }
 
 class Clinic
 {
-    private string name;
+    public string Name { get; private set; }  
     private Pet[] rooms;
 
     public Clinic(string name, int roomCount)
     {
         if (roomCount % 2 == 0)
-        {
             throw new InvalidOperationException("Invalid Operation!");
-        }
 
-        this.name = name;
-        this.rooms = new Pet[roomCount];
+        Name = name;
+        rooms = new Pet[roomCount];
     }
 
     public bool Add(Pet pet)
     {
-        int center = this.rooms.Length / 2;
+        int center = rooms.Length / 2;
 
-        for (int i = 0; i < this.rooms.Length; i++)
+        for (int i = 0; i < rooms.Length; i++)
         {
-            int index = i % 2 == 0
-                ? center - i / 2
-                : center + (i + 1) / 2;
+            int index = i % 2 == 0 ? center - i / 2 : center + (i + 1) / 2;
 
-            if (index >= 0 && index < this.rooms.Length && this.rooms[index] == null)
+            if (index >= 0 && index < rooms.Length && rooms[index] == null)
             {
-                this.rooms[index] = pet;
+                rooms[index] = pet;
                 return true;
             }
         }
@@ -57,56 +53,42 @@ class Clinic
 
     public bool Release()
     {
-        int center = this.rooms.Length / 2;
-        
-        for (int i = center; i < this.rooms.Length; i++)
-        {
-            if (this.rooms[i] != null)
+        int center = rooms.Length / 2;
+
+        for (int i = center; i < rooms.Length; i++)
+            if (rooms[i] != null)
             {
-                this.rooms[i] = null;
+                rooms[i] = null;
                 return true;
             }
-        }
-        
+
         for (int i = 0; i < center; i++)
-        {
-            if (this.rooms[i] != null)
+            if (rooms[i] != null)
             {
-                this.rooms[i] = null;
+                rooms[i] = null;
                 return true;
             }
-        }
 
         return false;
     }
 
     public bool HasEmptyRooms()
     {
-        foreach (var room in this.rooms)
-        {
+        foreach (var room in rooms)
             if (room == null) return true;
-        }
         return false;
     }
 
     public void Print()
     {
-        for (int i = 0; i < this.rooms.Length; i++)
-        {
-            if (this.rooms[i] == null)
-                Console.WriteLine("Room empty");
-            else
-                Console.WriteLine(this.rooms[i]);
-        }
+        for (int i = 0; i < rooms.Length; i++)
+            Console.WriteLine(rooms[i] == null ? "Room empty" : rooms[i].ToString());
     }
 
     public void Print(int roomNumber)
     {
-        Pet room = this.rooms[roomNumber - 1];
-        if (room == null)
-            Console.WriteLine("Room empty");
-        else
-            Console.WriteLine(room);
+        Pet room = rooms[roomNumber - 1];
+        Console.WriteLine(room == null ? "Room empty" : room.ToString());
     }
 }
 
@@ -122,7 +104,7 @@ class Program
 
         for (int i = 0; i < n; i++)
         {
-            string[] parts = Console.ReadLine().Split(' ');
+            string[] parts = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             string command = parts[0];
 
             try
@@ -157,9 +139,7 @@ class Program
                                 if (pets[p].Name == petName) pet = pets[p];
 
                             for (int c = 0; c < clinicCount; c++)
-                                if (clinics[c] != null && clinics[c].GetType().Name == "Clinic" && clinics[c].ToString() != null && clinics[c].ToString() != "")
-                                    if (clinics[c].GetType().GetField("name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(clinics[c]).ToString() == clinicName)
-                                        clinic = clinics[c];
+                                if (clinics[c].Name == clinicName) clinic = clinics[c];
 
                             if (pet == null || clinic == null)
                                 throw new InvalidOperationException();
@@ -174,11 +154,7 @@ class Program
                             Clinic clinic = null;
 
                             for (int c = 0; c < clinicCount; c++)
-                            {
-                                var field = clinics[c].GetType().GetField("name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                                if (field.GetValue(clinics[c]).ToString() == clinicName)
-                                    clinic = clinics[c];
-                            }
+                                if (clinics[c].Name == clinicName) clinic = clinics[c];
 
                             Console.WriteLine(clinic.Release());
                         }
@@ -190,11 +166,7 @@ class Program
                             Clinic clinic = null;
 
                             for (int c = 0; c < clinicCount; c++)
-                            {
-                                var field = clinics[c].GetType().GetField("name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                                if (field.GetValue(clinics[c]).ToString() == clinicName)
-                                    clinic = clinics[c];
-                            }
+                                if (clinics[c].Name == clinicName) clinic = clinics[c];
 
                             Console.WriteLine(clinic.HasEmptyRooms());
                         }
@@ -206,22 +178,20 @@ class Program
                             Clinic clinic = null;
 
                             for (int c = 0; c < clinicCount; c++)
-                            {
-                                var field = clinics[c].GetType().GetField("name", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                                if (field.GetValue(clinics[c]).ToString() == clinicName)
-                                    clinic = clinics[c];
-                            }
+                                if (clinics[c].Name == clinicName) clinic = clinics[c];
 
                             if (parts.Length == 2)
-                            {
                                 clinic.Print();
-                            }
                             else
                             {
                                 int room = int.Parse(parts[2]);
                                 clinic.Print(room);
                             }
                         }
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid Operation!");
                         break;
                 }
             }
