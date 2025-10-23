@@ -38,7 +38,7 @@ class ListyIterator<T> : IEnumerable
     {
         if (items.Length == 0)
             throw new InvalidOperationException("Invalid Operation!");
-        Console.WriteLine(string.Join(" ", this)); 
+        Console.WriteLine(string.Join(" ", items)); 
     }
 
     public IEnumerator GetEnumerator()
