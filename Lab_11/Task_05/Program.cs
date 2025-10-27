@@ -19,7 +19,7 @@ public class ClassInfoAttribute : Attribute
 }
 
 [ClassInfo("Pesho", 3, 
-    "Used for C# OOP Advanced Course - Enumerations and Attributes.", 
+    "Used for C#.", 
     "Petro", "Stepan")]
 public class Weapon
 {
