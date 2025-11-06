@@ -38,7 +38,7 @@ class Program
         }
         
         var weakStudents = from s in students
-            where s.Grades.Count(g => g <= 3) >= 2
+            where s.Grades.Count(g => g == 6) == 3
             select s;
         
         foreach (var s in weakStudents)

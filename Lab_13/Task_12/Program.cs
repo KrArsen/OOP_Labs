@@ -40,7 +40,7 @@ public class Program
         
         var grouped = orders
             .GroupBy(o => o.Company)
-            .OrderBy(g => g.Key)
+            .OrderByDescending(g => g.Key)
             .Select(g => new
             {
                 Company = g.Key,
