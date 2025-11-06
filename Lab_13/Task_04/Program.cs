@@ -33,9 +33,10 @@ class Program
             students.Add(new Student(firstName, lastName));
         }
         
-        var sortedStudents = students
-            .OrderBy(s => s.LastName)
-            .ThenByDescending(s => s.FirstName);
+        var sortedStudents = from s in students
+            orderby s.LastName ascending, s.FirstName descending
+            select s;
+
         
         foreach (var s in sortedStudents)
         {
