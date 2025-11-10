@@ -8,7 +8,6 @@
         public static void Main()
         {
             Type blackBoxType = typeof(BlackBoxInteger);
-
             
             object blackBoxInstance = Activator.CreateInstance(blackBoxType, true);
 
@@ -22,9 +21,7 @@
             
                 MethodInfo method = blackBoxType.GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic);
                 
-            
                 method.Invoke(blackBoxInstance, new object[] { value });
-
             
                 FieldInfo innerValueField = blackBoxType.GetField("innerValue", BindingFlags.Instance | BindingFlags.NonPublic);
                 int currentValue = (int)innerValueField.GetValue(blackBoxInstance);
