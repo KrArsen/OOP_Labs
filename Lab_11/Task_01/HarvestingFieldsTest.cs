@@ -9,10 +9,7 @@
         {
             Type classType = typeof(HarvestingFields);
 
-            FieldInfo[] fields = classType.GetFields(
-                BindingFlags.Instance |
-                BindingFlags.NonPublic |
-                BindingFlags.Public);
+            FieldInfo[] fields = classType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
             string command = Console.ReadLine();
 
