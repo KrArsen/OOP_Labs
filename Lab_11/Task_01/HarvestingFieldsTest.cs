@@ -9,31 +9,105 @@
         {
             Type classType = typeof(HarvestingFields);
 
-            FieldInfo[] fields = classType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            FieldInfo[] fields = classType.GetFields(
+                BindingFlags.Instance |
+                BindingFlags.NonPublic |
+                BindingFlags.Public);
 
-            string command;
-            while ((command = Console.ReadLine()) != "HARVEST")
+            string command = Console.ReadLine();
+
+            while (command != "HARVEST")
             {
-                FieldInfo[] filteredFields = command switch
-                {
-                    "private" => fields.Where(f => f.IsPrivate).ToArray(),
-                    "protected" => fields.Where(f => f.IsFamily).ToArray(),
-                    "public" => fields.Where(f => f.IsPublic).ToArray(),
-                    "all" => fields,
-                    _ => Array.Empty<FieldInfo>()
-                };
+                FieldInfo[] filteredFields;
 
-                foreach (var field in filteredFields)
+                if (command == "private")
                 {
-                    string accessModifier = field.IsPublic
-                        ? "public"
-                        : field.IsFamily
-                            ? "protected"
-                            : "private";
+                    filteredFields = GetPrivateFields(fields);
+                }
+                else if (command == "protected")
+                {
+                    filteredFields = GetProtectedFields(fields);
+                }
+                else if (command == "public")
+                {
+                    filteredFields = GetPublicFields(fields);
+                }
+                else if (command == "all")
+                {
+                    filteredFields = fields;
+                }
+                else
+                {
+                    filteredFields = new FieldInfo[0];
+                }
 
-                    Console.WriteLine($"{accessModifier} {field.FieldType.Name} {field.Name}");
+                foreach (FieldInfo field in filteredFields)
+                {
+                    string accessModifier;
+
+                    if (field.IsPublic)
+                    {
+                        accessModifier = "public";
+                    }
+                    else if (field.IsFamily)
+                    {
+                        accessModifier = "protected";
+                    }
+                    else
+                    {
+                        accessModifier = "private";
+                    }
+
+                    Console.WriteLine(accessModifier + " " + field.FieldType.Name + " " + field.Name);
+                }
+
+                command = Console.ReadLine();
+            }
+        }
+
+        private static FieldInfo[] GetPrivateFields(FieldInfo[] fields)
+        {
+            var list = new System.Collections.Generic.List<FieldInfo>();
+
+            foreach (FieldInfo f in fields)
+            {
+                if (f.IsPrivate)
+                {
+                    list.Add(f);
                 }
             }
+
+            return list.ToArray();
+        }
+
+        private static FieldInfo[] GetProtectedFields(FieldInfo[] fields)
+        {
+            var list = new System.Collections.Generic.List<FieldInfo>();
+
+            foreach (FieldInfo f in fields)
+            {
+                if (f.IsFamily)
+                {
+                    list.Add(f);
+                }
+            }
+
+            return list.ToArray();
+        }
+
+        private static FieldInfo[] GetPublicFields(FieldInfo[] fields)
+        {
+            var list = new System.Collections.Generic.List<FieldInfo>();
+
+            foreach (FieldInfo f in fields)
+            {
+                if (f.IsPublic)
+                {
+                    list.Add(f);
+                }
+            }
+
+            return list.ToArray();
         }
     }
 }
