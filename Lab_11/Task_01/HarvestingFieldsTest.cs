@@ -64,7 +64,7 @@
 
         private static FieldInfo[] GetPrivateFields(FieldInfo[] fields)
         {
-            var list = new System.Collections.Generic.List<FieldInfo>();
+            var list = new List<FieldInfo>();
 
             foreach (FieldInfo f in fields)
             {
@@ -79,7 +79,7 @@
 
         private static FieldInfo[] GetProtectedFields(FieldInfo[] fields)
         {
-            var list = new System.Collections.Generic.List<FieldInfo>();
+            var list = new List<FieldInfo>();
 
             foreach (FieldInfo f in fields)
             {
@@ -94,7 +94,7 @@
 
         private static FieldInfo[] GetPublicFields(FieldInfo[] fields)
         {
-            var list = new System.Collections.Generic.List<FieldInfo>();
+            var list = new List<FieldInfo>();
 
             foreach (FieldInfo f in fields)
             {
