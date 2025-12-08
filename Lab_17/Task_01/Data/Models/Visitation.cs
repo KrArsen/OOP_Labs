@@ -11,7 +11,9 @@ namespace Task_01.Data.Models
         public string Comments { get; set; }
 
         public int PatientId { get; set; }
-
         public Patient Patient { get; set; }
+        
+        public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
     }
 }

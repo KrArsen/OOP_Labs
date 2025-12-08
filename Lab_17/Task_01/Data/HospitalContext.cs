@@ -20,6 +20,8 @@ namespace Task_01.Data
         public DbSet<Diagnose> Diagnoses { get; set; }
         public DbSet<Medicament> Medicaments { get; set; }
         public DbSet<PatientMedicament> PatientsMedicaments { get; set; }
+        
+        public DbSet<Doctor> Doctors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -113,6 +115,39 @@ namespace Task_01.Data
                     .WithMany(m => m.Prescriptions)
                     .HasForeignKey(pm => pm.MedicamentId);
             });
+            
+            modelBuilder.Entity<Doctor>(entity =>
+            {
+                entity.HasKey(e => e.DoctorId);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(true)
+                    .IsRequired();
+
+                entity.Property(e => e.Specialty)
+                    .HasMaxLength(100)
+                    .IsUnicode(true)
+                    .IsRequired();
+
+                entity.HasMany(d => d.Visitations)
+                    .WithOne(v => v.Doctor)
+                    .HasForeignKey(v => v.DoctorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Visitation>(entity =>
+            {
+                entity.HasKey(e => e.VisitationId);
+
+                entity.Property(e => e.Comments)
+                    .HasMaxLength(250)
+                    .IsUnicode(true);
+                
+            });
+
+            
+            
         }
     }
 }

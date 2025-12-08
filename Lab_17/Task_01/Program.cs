@@ -23,6 +23,8 @@ namespace Task_01
                 Console.WriteLine("4. Додати медикамент");
                 Console.WriteLine("5. Призначити медикамент пацієнту");
                 Console.WriteLine("6. Показати всіх пацієнтів");
+                Console.WriteLine("7. Додати лікаря");
+                Console.WriteLine("8. Показати лікарів");
                 Console.WriteLine("0. Вихід");
                 Console.Write("Ваш вибір: ");
 
@@ -47,6 +49,12 @@ namespace Task_01
                         break;
                     case "6":
                         ShowPatients(db);
+                        break;
+                    case "7":
+                        AddDoctor(db);
+                        break;
+                    case "8":
+                        ShowDoctors(db);
                         break;
                     case "0":
                         return;
@@ -94,14 +102,18 @@ namespace Task_01
         static void AddVisitation(HospitalContext db)
         {
             Console.Write("ID пацієнта: ");
-            int id = int.Parse(Console.ReadLine());
+            int patientId = int.Parse(Console.ReadLine());
+
+            Console.Write("ID лікаря: ");
+            int doctorId = int.Parse(Console.ReadLine());
 
             Console.Write("Коментар: ");
             string comment = Console.ReadLine();
 
             var visit = new Visitation
             {
-                PatientId = id,
+                PatientId = patientId,
+                DoctorId = doctorId,
                 Date = DateTime.Now,
                 Comments = comment
             };
@@ -112,6 +124,7 @@ namespace Task_01
             Console.WriteLine("Візит додано!");
             Console.ReadKey();
         }
+
 
         static void AddDiagnose(HospitalContext db)
         {
@@ -184,5 +197,37 @@ namespace Task_01
 
             Console.ReadKey();
         }
+        static void AddDoctor(HospitalContext db)
+        {
+            Console.Write("Ім'я лікаря: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Спеціальність: ");
+            string specialty = Console.ReadLine();
+
+            var doctor = new Doctor
+            {
+                Name = name,
+                Specialty = specialty
+            };
+
+            db.Doctors.Add(doctor);
+            db.SaveChanges();
+
+            Console.WriteLine("Лікаря додано!");
+            Console.ReadKey();
+        }
+
+        static void ShowDoctors(HospitalContext db)
+        {
+            Console.Clear();
+            foreach (var d in db.Doctors)
+            {
+                Console.WriteLine($"{d.DoctorId}. {d.Name} | {d.Specialty}");
+            }
+            Console.ReadKey();
+        }
+        
+
     }
 }
